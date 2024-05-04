@@ -3,11 +3,11 @@ dnf install nginx -y &> /tmp/expense.log
 echo exit status - $?
 
 echo -e "\e[31mCopying nginx config file..\e[0m"
-cp expense.conf /etc/nginx/default.d/expense.conf &> /tmp/expense.log
+cp expense.conf /etc/nginx/default.d/expense.conf &>> /tmp/expense.log
 echo exit status - $?
 
 echo -e "\e[31mCleaning up old content ..\e[0m"
-rm -rf /usr/share/nginx/html/* &> /tmp/expense.log
+rm -rf /usr/share/nginx/html/* &>> /tmp/expense.log
 echo exit status - $?
 
 echo -e "\e[31mDownloading front end content..\e[0m"
