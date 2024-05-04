@@ -1,26 +1,30 @@
-echo -e "\e[31mInstalling Web Server..\e[0m"
+HEADING() {
+   echo -e "\e[31m$*\e[0m"
+}
+
+HEADING Installing Web Server
 dnf install nginx -y &> /tmp/expense.log
 echo exit status - $?
 
-echo -e "\e[31mCopying nginx config file..\e[0m"
+HEADING Copying nginx config file..
 cp expense.conf /etc/nginx/default.d/expense.conf &>> /tmp/expense.log
 echo exit status - $?
 
-echo -e "\e[31mCleaning up old content ..\e[0m"
+HEADING Cleaning up old content ..
 rm -rf /usr/share/nginx/html/* &>> /tmp/expense.log
 echo exit status - $?
 
-echo -e "\e[31mDownloading front end content..\e[0m"
+HEADING Downloading front end content..
 curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip &>> /tmp/expense.log
 echo exit status - $?
 
 cd /usr/share/nginx/html
 
-echo -e "\e[31mExtracting content..\e[0m"
+HEADING Extracting content..
 unzip /tmp/frontend.zip &>> /tmp/expense.log
 echo exit status - $?
 
-echo -e "\e[31mRestarting the service..\e[0m"
+HEADING Restarting the service..
 systemctl restart nginx &>> /tmp/expense.log
 systemctl enable nginx &>> /tmp/expense.log
 echo exit status - $?
