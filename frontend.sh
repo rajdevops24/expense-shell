@@ -1,6 +1,4 @@
-HEADING() {
-   echo -e "\e[31m$*\e[0m"
-}
+source common.sh
 
 HEADING Installing Web Server
 dnf install nginx -y &> /tmp/expense.log
