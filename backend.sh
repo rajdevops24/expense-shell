@@ -17,14 +17,20 @@ if [ $? -ne 0 ]; then
 fi
 STAT $?
 
-HEADING "Add exp user"
+HEADING "setup backend service"
 cp backend.service /etc/systemd/system/backend.service
+STAT $?
+HEADING "delete existing app dir"
+rm -rf /app
+STAT $?
+HEADING "create app dir"
 mkdir /app
-
+STAT $?
+HEADING "download backend code"
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
 cd /app
 unzip /tmp/backend.zip
-
+STAT $?
 npm install
 
 dnf install mysql -y
