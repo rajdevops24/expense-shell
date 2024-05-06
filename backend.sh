@@ -11,7 +11,10 @@ dnf install nodejs -y
 STAT $?
 
 HEADING "Add exp user"
-useradd expense
+id expense
+if [ $? -ne 0 ]; then
+  useradd expense
+fi
 STAT $?
 
 HEADING "Add exp user"
