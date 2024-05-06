@@ -1,9 +1,20 @@
+source common.sh
+HEADING "Disable nodejs def ver"
 dnf module disable nodejs -y
+STAT $?
+HEADING "Enable nodejs 20"
 dnf module enable nodejs:20 -y
+STAT $?
 
+HEADING "Install nodejs "
 dnf install nodejs -y
+STAT $?
 
+HEADING "Add exp user"
 useradd expense
+STAT $?
+
+HEADING "Add exp user"
 cp backend.service /etc/systemd/system/backend.service
 mkdir /app
 
